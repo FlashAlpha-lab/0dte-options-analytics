@@ -1,5 +1,7 @@
 # 0DTE Options Analytics — Python Examples
 
+[![CI](https://github.com/FlashAlpha-lab/0dte-options-analytics/actions/workflows/ci.yml/badge.svg)](https://github.com/FlashAlpha-lab/0dte-options-analytics/actions/workflows/ci.yml)
+
 Real-time intraday analytics for zero days to expiration (0DTE) options using the
 [FlashAlpha API](https://flashalpha.com). This repository contains working Python
 examples, theory explainers, and test suites covering 0DTE gamma exposure, pin risk,
@@ -167,6 +169,16 @@ Install the official Python SDK: `pip install flashalpha`
 Full SDK documentation and API reference: [flashalpha.com](https://flashalpha.com)
 
 GitHub: [github.com/FlashAlpha-lab/flashalpha-python](https://github.com/FlashAlpha-lab/flashalpha-python)
+
+---
+
+## See Also
+
+- [FlashAlpha Python SDK](https://github.com/FlashAlpha-lab/flashalpha-python) — `pip install flashalpha`
+- [GEX Explained](https://github.com/FlashAlpha-lab/gex-explained) — gamma exposure theory and code
+- [Volatility Surface Python](https://github.com/FlashAlpha-lab/volatility-surface-python) — SVI, variance swap, skew analysis
+- [Examples](https://github.com/FlashAlpha-lab/flashalpha-examples) — more tutorials
+- [Awesome Options Analytics](https://github.com/FlashAlpha-lab/awesome-options-analytics) — curated resource list
 
 ---
 
