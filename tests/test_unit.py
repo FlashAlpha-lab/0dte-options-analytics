@@ -36,55 +36,103 @@ def _zero_dte_full():
     """A fully populated zero_dte response covering all analytics sections."""
     return {
         "symbol": "SPY",
-        "spot": 595.40,
-        "no_zero_dte": False,
+        "underlying_price": 590.42,
+        "expiration": "2026-03-19",
+        "as_of": "2026-03-19T14:45:12Z",
+        "market_open": True,
+        "time_to_close_hours": 1.25,
+        "time_to_close_pct": 80.8,
         "regime": {
             "label": "positive_gamma",
-            "gamma_flip": 593.00,
-            "net_gex": 1_850_000_000,
-            "zero_dte_gex_pct": 0.48,
-            "call_wall": 600.0,
-            "put_wall": 590.0,
+            "description": "Dealers long gamma — moves dampened, mean reversion likely",
+            "gamma_flip": 588.50,
+            "spot_vs_flip": "above",
+            "spot_to_flip_pct": 0.33,
+        },
+        "exposures": {
+            "net_gex": 1_842_000_000,
+            "net_dex": 48_200_000_000,
+            "net_vex": -320_000_000,
+            "net_chex": 95_000_000,
+            "pct_of_total_gex": 62.4,
+            "total_chain_net_gex": 2_952_000_000,
         },
         "expected_move": {
-            "atm_iv": 0.122,
-            "straddle_price": 3.85,
-            "full_day_1sd": 3.85,
-            "remaining_1sd": 2.10,
-            "hours_remaining": 3.2,
-            "time_elapsed_pct": 51.0,
-            "open_price": 594.80,
+            "implied_1sd_dollars": 2.18,
+            "implied_1sd_pct": 0.37,
+            "remaining_1sd_dollars": 1.05,
+            "remaining_1sd_pct": 0.18,
+            "upper_bound": 591.47,   # underlying_price + remaining_1sd_dollars = 590.42 + 1.05
+            "lower_bound": 589.37,   # underlying_price - remaining_1sd_dollars = 590.42 - 1.05
+            "straddle_price": 1.62,
+            "atm_iv": 0.123,
         },
         "pin_risk": {
-            "pin_score": 74,
-            "magnet_strike": 595.0,
-            "max_pain": 595.0,
-            "oi_concentration": 0.31,
-            "dominant_strike_oi": 145_000,
+            "magnet_strike": 590,
+            "magnet_gex": 580_000_000,
+            "distance_to_magnet_pct": 0.07,
+            "pin_score": 82,
+            "max_pain": 590,
+            "oi_concentration_top3_pct": 41.2,
+            "description": "Strong pin at 590. 82/100 pin score with 41% of OI in top 3 strikes.",
         },
         "hedging": {
-            "up_1pct": {"shares": -320_000, "direction": "SELL", "notional": 190_500_000},
-            "up_0_5pct": {"shares": -155_000, "direction": "SELL", "notional": 92_200_000},
-            "down_0_5pct": {"shares": 148_000, "direction": "BUY", "notional": 88_100_000},
-            "down_1pct": {"shares": 310_000, "direction": "BUY", "notional": 184_600_000},
-            "net_bias": "buy_dips",
+            "spot_up_half_pct": {"dealer_shares_to_trade": -156_100, "direction": "sell", "notional_usd": -92_158_000},
+            "spot_down_half_pct": {"dealer_shares_to_trade": 156_100, "direction": "buy", "notional_usd": 92_158_000},
+            "spot_up_1pct": {"dealer_shares_to_trade": -312_200, "direction": "sell", "notional_usd": -184_316_000},
+            "spot_down_1pct": {"dealer_shares_to_trade": 312_200, "direction": "buy", "notional_usd": 184_316_000},
         },
         "decay": {
-            "net_theta": -4_200_000,
-            "theta_per_hour": -1_312_500,
-            "charm_regime": "unwinding",
-            "gamma_acceleration": 1.85,
-            "decay_rate_change": 0.14,
+            "net_theta_dollars": -4_820_000,
+            "theta_per_hour_remaining": -3_856_000,
+            "charm_regime": "time_decay_dealers_buy",
+            "charm_description": "Time decay pushing dealers to buy — supportive into close",
+            "gamma_acceleration": 2.4,
+            "description": "0DTE theta bleeding $3,856/hr. Gamma 2.4x higher than equivalent 7DTE.",
         },
         "vol_context": {
-            "atm_iv_0dte": 0.122,
-            "atm_iv_7dte": 0.108,
-            "zero_dte_7dte_ratio": 1.13,
-            "vix": 17.4,
-            "vanna_exposure": 980_000_000,
-            "vanna_interpretation": "Vol drop -> dealer buy flows",
-            "vol_regime": "elevated",
+            "zero_dte_atm_iv": 12.3,
+            "seven_dte_atm_iv": 14.8,
+            "iv_ratio_0dte_7dte": 0.83,
+            "vix": 16.2,
+            "vanna_exposure": -320_000_000,
+            "vanna_interpretation": "vol_up_dealers_sell",
+            "description": "0DTE IV at 12.3% vs 7DTE at 14.8%. Negative vanna — vol spike triggers dealer selling.",
         },
+        "flow": {
+            "total_volume": 842_000,
+            "call_volume": 520_000,
+            "put_volume": 322_000,
+            "total_oi": 1_240_000,
+            "call_oi": 680_000,
+            "put_oi": 560_000,
+            "pc_ratio_volume": 0.619,
+            "pc_ratio_oi": 0.824,
+            "volume_to_oi_ratio": 0.679,
+        },
+        "levels": {
+            "call_wall": 595,
+            "call_wall_gex": 420_000_000,
+            "put_wall": 585,
+            "put_wall_gex": -380_000_000,
+            "highest_oi_strike": 590,
+            "highest_oi_total": 48_200,
+            "max_positive_gamma": 592,
+            "max_negative_gamma": 586,
+        },
+        "strikes": [
+            {
+                "strike": 590,
+                "call_gex": 450_000_000, "put_gex": -380_000_000, "net_gex": 70_000_000,
+                "call_dex": 12_500_000, "put_dex": -15_000_000, "net_dex": -2_500_000,
+                "call_oi": 25_000, "put_oi": 30_000,
+                "call_volume": 15_000, "put_volume": 12_000,
+                "call_iv": 0.18, "put_iv": 0.19,
+                "call_delta": 0.50, "put_delta": -0.50,
+                "call_gamma": 0.025, "put_gamma": 0.025,
+                "call_theta": -1.0, "put_theta": -1.0,
+            }
+        ],
     }
 
 
@@ -92,19 +140,24 @@ def _zero_dte_no_expiry():
     """Payload returned when there is no 0DTE expiration today for the symbol."""
     return {
         "symbol": "SPY",
+        "underlying_price": 590.42,
+        "expiration": None,
+        "as_of": "2026-03-17T15:30:00Z",
+        "market_open": True,
         "no_zero_dte": True,
-        "message": "No zero-DTE expiration for SPY today.",
+        "message": "No 0DTE expiry for SPY today (Tuesday). Next expiry: 2026-03-18.",
+        "next_zero_dte_expiry": "2026-03-18",
     }
 
 
 # ── Test 1: zero_dte response parsing — basic fields ────────────────────────
 
 @responses.activate
-def test_zero_dte_returns_symbol_and_spot(fa):
+def test_zero_dte_returns_symbol_and_underlying_price(fa):
     responses.get(f"{BASE}/v1/exposure/zero-dte/SPY", json=_zero_dte_full())
     result = fa.zero_dte("SPY")
     assert result["symbol"] == "SPY"
-    assert result["spot"] == 595.40
+    assert result["underlying_price"] == pytest.approx(590.42)
 
 
 # ── Test 2: pin risk score parsing ──────────────────────────────────────────
@@ -114,16 +167,16 @@ def test_pin_risk_score_parsed(fa):
     responses.get(f"{BASE}/v1/exposure/zero-dte/SPY", json=_zero_dte_full())
     result = fa.zero_dte("SPY")
     pin = result["pin_risk"]
-    assert pin["pin_score"] == 74
-    assert pin["magnet_strike"] == 595.0
-    assert pin["max_pain"] == 595.0
+    assert pin["pin_score"] == 82
+    assert pin["magnet_strike"] == 590
+    assert pin["max_pain"] == 590
 
 
 # ── Test 3: pin score interpretation — thresholds ───────────────────────────
 
 def test_pin_score_high_threshold():
     """Scores >= 70 should classify as HIGH pin risk."""
-    score = 74
+    score = 82
     if score >= 70:
         category = "HIGH"
     elif score >= 40:
@@ -162,28 +215,28 @@ def test_expected_move_fields_parsed(fa):
     responses.get(f"{BASE}/v1/exposure/zero-dte/SPY", json=_zero_dte_full())
     result = fa.zero_dte("SPY")
     em = result["expected_move"]
-    assert em["atm_iv"] == pytest.approx(0.122)
-    assert em["straddle_price"] == pytest.approx(3.85)
-    assert em["full_day_1sd"] == pytest.approx(3.85)
-    assert em["remaining_1sd"] == pytest.approx(2.10)
+    assert em["atm_iv"] == pytest.approx(0.123)
+    assert em["straddle_price"] == pytest.approx(1.62)
+    assert em["implied_1sd_dollars"] == pytest.approx(2.18)
+    assert em["remaining_1sd_dollars"] == pytest.approx(1.05)
 
 
 def test_expected_move_upper_lower_bounds():
-    """Verify upper/lower bound arithmetic from remaining_1sd."""
-    spot = 595.40
-    remaining_1sd = 2.10
-    upper = spot + remaining_1sd
-    lower = spot - remaining_1sd
-    assert upper == pytest.approx(597.50)
-    assert lower == pytest.approx(593.30)
+    """Verify upper/lower bound arithmetic from remaining_1sd_dollars."""
+    underlying_price = 590.42
+    remaining_1sd_dollars = 1.05
+    upper = underlying_price + remaining_1sd_dollars
+    lower = underlying_price - remaining_1sd_dollars
+    assert upper == pytest.approx(591.47)
+    assert lower == pytest.approx(589.37)
 
 
 def test_expected_move_pct_remaining():
-    """Remaining 1SD as a fraction of full-day 1SD."""
-    full_1sd = 3.85
-    remaining_1sd = 2.10
-    pct = remaining_1sd / full_1sd * 100
-    assert pct == pytest.approx(54.5, abs=0.5)
+    """Remaining 1SD as a fraction of full-day implied 1SD."""
+    implied_1sd_dollars = 2.18
+    remaining_1sd_dollars = 1.05
+    pct = remaining_1sd_dollars / implied_1sd_dollars * 100
+    assert pct == pytest.approx(48.2, abs=0.5)
 
 
 # ── Test 5: regime detection ─────────────────────────────────────────────────
@@ -209,7 +262,7 @@ def test_regime_label_negative_gamma(fa):
 def test_gamma_flip_parsed(fa):
     responses.get(f"{BASE}/v1/exposure/zero-dte/SPY", json=_zero_dte_full())
     result = fa.zero_dte("SPY")
-    assert result["regime"]["gamma_flip"] == pytest.approx(593.00)
+    assert result["regime"]["gamma_flip"] == pytest.approx(588.50)
 
 
 # ── Test 6: dealer hedging flow direction ────────────────────────────────────
@@ -219,20 +272,20 @@ def test_hedging_flows_direction(fa):
     responses.get(f"{BASE}/v1/exposure/zero-dte/SPY", json=_zero_dte_full())
     result = fa.zero_dte("SPY")
     hedging = result["hedging"]
-    # Up scenarios: dealers sell into rallies (negative shares / SELL direction)
-    assert hedging["up_1pct"]["direction"] == "SELL"
-    assert hedging["up_0_5pct"]["shares"] < 0
-    # Down scenarios: dealers buy on dips (positive shares / BUY direction)
-    assert hedging["down_0_5pct"]["direction"] == "BUY"
-    assert hedging["down_1pct"]["shares"] > 0
+    # Up scenarios: dealers sell into rallies (negative shares / sell direction)
+    assert hedging["spot_up_1pct"]["direction"] == "sell"
+    assert hedging["spot_up_half_pct"]["dealer_shares_to_trade"] < 0
+    # Down scenarios: dealers buy on dips (positive shares / buy direction)
+    assert hedging["spot_down_half_pct"]["direction"] == "buy"
+    assert hedging["spot_down_1pct"]["dealer_shares_to_trade"] > 0
 
 
 def test_hedging_flow_notional_magnitude():
     """Notional should be substantially larger than share count * 1 dollar."""
-    shares = 320_000
-    spot = 595.40
+    shares = 312_200
+    spot = 590.42
     approx_notional = shares * spot
-    assert approx_notional > 100_000_000  # >$100M for 320k shares of SPY
+    assert approx_notional > 100_000_000  # >$100M for 312k shares of SPY
 
 
 # ── Test 7: theta decay parsing ──────────────────────────────────────────────
@@ -242,10 +295,10 @@ def test_theta_decay_fields(fa):
     responses.get(f"{BASE}/v1/exposure/zero-dte/SPY", json=_zero_dte_full())
     result = fa.zero_dte("SPY")
     decay = result["decay"]
-    assert decay["net_theta"] == -4_200_000
-    assert decay["theta_per_hour"] == -1_312_500
-    assert decay["charm_regime"] == "unwinding"
-    assert decay["gamma_acceleration"] == pytest.approx(1.85)
+    assert decay["net_theta_dollars"] == -4_820_000
+    assert decay["theta_per_hour_remaining"] == -3_856_000
+    assert decay["charm_regime"] == "time_decay_dealers_buy"
+    assert decay["gamma_acceleration"] == pytest.approx(2.4)
 
 
 def test_gamma_acceleration_classification():
@@ -273,14 +326,14 @@ def test_vol_context_fields(fa):
     responses.get(f"{BASE}/v1/exposure/zero-dte/SPY", json=_zero_dte_full())
     result = fa.zero_dte("SPY")
     vol = result["vol_context"]
-    assert vol["zero_dte_7dte_ratio"] == pytest.approx(1.13)
-    assert vol["vix"] == pytest.approx(17.4)
-    assert vol["vanna_exposure"] == 980_000_000
+    assert vol["iv_ratio_0dte_7dte"] == pytest.approx(0.83)
+    assert vol["vix"] == pytest.approx(16.2)
+    assert vol["vanna_exposure"] == -320_000_000
 
 
 def test_iv_ratio_interpretation():
-    """IV ratio above 1.1 should signal elevated 0DTE premium."""
-    ratio = 1.13
+    """IV ratio below 1.0 (0DTE cheaper than 7DTE) should signal subdued 0DTE premium."""
+    ratio = 0.83
     if ratio > 1.25:
         interpretation = "HIGHLY ELEVATED"
     elif ratio > 1.10:
@@ -289,7 +342,7 @@ def test_iv_ratio_interpretation():
         interpretation = "NORMAL"
     else:
         interpretation = "SUBDUED"
-    assert interpretation == "ELEVATED"
+    assert interpretation == "SUBDUED"
 
 
 # ── Test 9: no 0DTE expiry handling ─────────────────────────────────────────
@@ -390,19 +443,19 @@ def test_gex_gamma_flip(fa):
 
 def test_oi_concentration_distance_calculation():
     """Distance from spot to magnet strike should compute correctly."""
-    spot = 595.40
-    magnet = 595.0
-    distance_pct = abs(spot - magnet) / spot * 100
-    assert distance_pct == pytest.approx(0.0672, abs=0.001)
+    underlying_price = 590.42
+    magnet = 590
+    distance_pct = abs(underlying_price - magnet) / underlying_price * 100
+    assert distance_pct == pytest.approx(0.0712, abs=0.001)
 
 
 # ── Test 16: full-day vs remaining expected move pct used ────────────────────
 
 def test_expected_move_pct_used():
     """If remaining is smaller than full, pct_used > 0."""
-    full_1sd = 3.85
-    remaining_1sd = 2.10
-    pct_used = (1 - remaining_1sd / full_1sd) * 100
+    implied_1sd_dollars = 2.18
+    remaining_1sd_dollars = 1.05
+    pct_used = (1 - remaining_1sd_dollars / implied_1sd_dollars) * 100
     assert pct_used > 0
     assert pct_used < 100
 
