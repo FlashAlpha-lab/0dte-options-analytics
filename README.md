@@ -123,7 +123,7 @@ print(data["pin_risk"]["pin_score"])   # 0-100
 print(data["expected_move"]["remaining_1sd"])  # intraday remaining move
 ```
 
-Get a free API key (10 requests/day, no credit card) at [flashalpha.com](https://flashalpha.com).
+Get a free API key at [flashalpha.com](https://flashalpha.com) — no credit card required.
 
 ---
 
