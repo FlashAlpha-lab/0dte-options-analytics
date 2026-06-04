@@ -185,3 +185,9 @@ GitHub: [github.com/FlashAlpha-lab/flashalpha-python](https://github.com/FlashAl
 ## License
 
 MIT — see [LICENSE](LICENSE)
+
+## Beyond the basics
+
+This repo computes the math from scratch and against the live API. Production
+workloads (full-universe coverage, point-in-time history, aggregate vanna/charm)
+run on the **Alpha tier**: [flashalpha.com/for-quant-teams](https://flashalpha.com/for-quant-teams?utm_source=github&utm_medium=readme&utm_campaign=repo-0dte-options-analytics)
