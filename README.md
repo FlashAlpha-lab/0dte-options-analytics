@@ -106,6 +106,34 @@ zones that technically-oriented 0DTE traders use for entry and exit timing.
 
 ---
 
+## FlashAlpha 0DTE & Intraday API Endpoints
+
+These are the live, simulation-aware FlashAlpha endpoints that power same-day 0DTE
+(zero days to expiration) options analytics — intraday gamma exposure, pin risk, gamma
+magnet, dealer hedge flow, time-to-close theta/charm decay, and expected move. Use them
+to build real-time 0DTE dashboards, intraday SPY/SPX/QQQ scanners, and dealer-positioning
+trading signals.
+
+| Endpoint | What it returns |
+|---|---|
+| `GET /v1/exposure/zero-dte/{symbol}` | Full 0DTE exposure sheet: gamma regime and gamma-flip distance, pin risk and gamma-magnet strike, expected move, dealer hedging buckets at ±10bp / ±25bp / ±50bp / ±1%, time-to-close theta/charm decay, and per-strike breakdown. Pass the new optional `expiry` param to pull 1DTE, 2DTE, or any same-week expiry through the same zero days to expiration selector. |
+| `GET /v1/flow/zero-dte/snapshot/{symbol}` | Live, simulation-aware 0DTE snapshot on effective open interest — the same shape as the exposure sheet plus a `flow_direction` block showing whether intraday dealer flow is amplifying or dampening net gamma since the open. |
+| `GET /v1/flow/zero-dte/series/{symbol}` | Intraday 0DTE time series (30s/1m/5m/15m bars) of net GEX/DEX, gamma flip, walls, gamma magnet, pin score, ATM IV, and charm — ready for charting how today's zero-DTE dealer positioning evolves into the close. |
+| `GET /v1/flow/zero-dte/hedge-flow/{symbol}` | Cumulative dealer hedge-flow time series (calls / puts / all) — the signed shares and notional market makers transact intraday to stay delta-neutral as spot drifts toward the 0DTE gamma magnet. |
+| `GET /v1/flow/zero-dte/heatmap/{symbol}` | Strike × time heatmap of 0DTE GEX/DEX/VEX/CHEX/OI or signed aggressor flow (raw or delta mode) — visualize where intraday dealer gamma and option flow concentrate across the session. |
+| `GET /v1/flow/zero-dte/strike-flow/{symbol}` | Per-strike signed aggressor flow for today's 0DTE chain — see exactly which strikes are absorbing intraday buying vs. selling pressure and where pin risk is building. |
+| `GET /v1/strategies/zero-dte/{symbol}` | Same-day 0DTE strategy signal (range-compression / iron-fly) with a decision verdict, sized from live pin risk, expected move, and dealer gamma regime. |
+| `GET /v1/flow/pin-risk/{symbol}` | Live pin-risk score, magnet strike, and max pain for the underlying — the real-time gamma-magnet read that drives end-of-day 0DTE pinning. |
+
+Keywords: 0dte options API, zero days to expiration analytics, 0dte pin risk endpoint,
+gamma magnet, intraday dealer hedging flow, time-to-close decay, charm decay, expected
+move, 0dte gamma exposure, SPY SPX QQQ 0dte, same-day iron fly signal.
+
+Run these at full-universe scale with point-in-time history on the **Alpha tier**:
+[flashalpha.com/for-quant-teams](https://flashalpha.com/for-quant-teams?utm_source=github&utm_medium=readme&utm_campaign=repo-0dte-options-analytics)
+
+---
+
 ## Quick Start
 
 ```bash
