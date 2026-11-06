@@ -161,9 +161,10 @@ trading signals.
 | `GET /v1/flow/zero-dte/heatmap/{symbol}` | Strike × time heatmap of 0DTE GEX/DEX/VEX/CHEX/OI or signed aggressor flow (raw or delta mode) — visualize where intraday dealer gamma and option flow concentrate across the session. |
 | `GET /v1/flow/zero-dte/strike-flow/{symbol}` | Per-strike signed aggressor flow for today's 0DTE chain — see exactly which strikes are absorbing intraday buying vs. selling pressure and where pin risk is building. |
 | `GET /v1/strategies/zero-dte/{symbol}` | Same-day 0DTE strategy signal (range-compression / iron-fly) with a decision verdict, sized from live pin risk, expected move, and dealer gamma regime. |
+| `GET /v1/strategies/sell-window/{symbol}` | Should you sell options today? Sell or skip for the same-day expiry and three later expiries on SPY, QQQ and IWM, with the strikes, quotes and exit rule on a sell. More than 5 million backtests led to it. [Docs](https://flashalpha.com/docs/lab-api-strategies-sell-window?utm_source=github&utm_medium=readme&utm_campaign=repo-0dte-options-analytics&utm_content=sell-window) and [backtest](https://flashalpha.com/articles/sell-window-backtest-every-trade-2018-2026?utm_source=github&utm_medium=readme&utm_campaign=repo-0dte-options-analytics&utm_content=sell-window). |
 | `GET /v1/flow/pin-risk/{symbol}` | Live pin-risk score, magnet strike, and max pain for the underlying — the real-time gamma-magnet read that drives end-of-day 0DTE pinning. |
 
-Keywords: 0dte options API, zero days to expiration analytics, 0dte pin risk endpoint,
+Keywords: 0dte options API, should I sell 0dte today, zero days to expiration analytics, 0dte pin risk endpoint,
 gamma magnet, intraday dealer hedging flow, time-to-close decay, charm decay, expected
 move, 0dte gamma exposure, SPY SPX QQQ 0dte, same-day iron fly signal.
 
