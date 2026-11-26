@@ -243,6 +243,7 @@ GitHub: [github.com/FlashAlpha-lab/flashalpha-python](https://github.com/FlashAl
 
 - [FlashAlpha Python SDK](https://github.com/FlashAlpha-lab/flashalpha-python) — `pip install flashalpha`
 - [GEX Explained](https://github.com/FlashAlpha-lab/gex-explained) — gamma exposure theory and code
+- [TradingView GEX by FlashAlpha](https://github.com/FlashAlpha-lab/tradingview-gex-flashalpha) - call wall, put wall, gamma flip and max pain on a live candlestick chart
 - [Volatility Surface Python](https://github.com/FlashAlpha-lab/volatility-surface-python) — SVI, variance swap, skew analysis
 - [Examples](https://github.com/FlashAlpha-lab/flashalpha-examples) — more tutorials
 - [Awesome Options Analytics](https://github.com/FlashAlpha-lab/awesome-options-analytics) — curated resource list
